@@ -6,8 +6,18 @@ function Player() {
 
     const { track, seekBar, seekBg, play, pause, playStatus, time, nextSong, previusSong,
         seekSong, toggleLoop, isLooping, isShuffle, toggleShuffle, volume, handleVolumeChange,
-        isMuted, toggleMute } = useContext(PlayerContext)
+        isMuted, toggleMute, likeSong, unlikeSong, isSongLiked } = useContext(PlayerContext)
 
+    const isLiked = track ? isSongLiked(track._id) : false;
+
+    const handleLikeClick = async () => {
+        if (!track) return;
+        if (isLiked) {
+            await unlikeSong(track._id);
+        } else {
+            await likeSong(track._id);
+        }
+    };
 
     return track ? (
         <div className="h-[10%] min-h-[80px] sm:min-h-[90px] bg-black flex flex-col sm:flex-row justify-between items-center text-white px-2 sm:px-4 py-2 sm:py-0 gap-2 sm:gap-0">
@@ -18,6 +28,15 @@ function Player() {
                     <p className='text-xs sm:text-sm font-semibold truncate'>{track.name}</p>
                     <p className='text-[10px] sm:text-xs text-gray-400 truncate'>{track.desc.slice(0, 20)}</p>
                 </div>
+                <button
+                    onClick={handleLikeClick}
+                    className="ml-2 hover:scale-110 transition-transform"
+                    title={isLiked ? "Unlike" : "Like"}
+                >
+                    <span className={`text-lg ${isLiked ? 'text-green-500' : 'text-gray-400 hover:text-white'}`}>
+                        {isLiked ? '❤️' : '🤍'}
+                    </span>
+                </button>
             </div>
 
             {/* Player Controls - Center */}

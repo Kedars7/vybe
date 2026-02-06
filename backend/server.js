@@ -7,6 +7,7 @@ import userRouter from "./src/routes/userRoute.js";
 import messageRouter from "./src/routes/messageRoute.js";
 import connectCloudinary from "./src/config/cloudinary.js";
 import albumRouter from "./src/routes/albumRoute.js";
+import playlistRouter from "./src/routes/playlistRoute.js";
 import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
 import { createServer } from "http";
@@ -78,7 +79,8 @@ app.use(cors({
 app.use("/api/song", songRouter)
 app.use("/api/album", albumRouter)
 app.use("/api/user", userRouter)
-app.use("/api/message", messageRouter);
+app.use("/api/message", messageRouter)
+app.use("/api/playlist", playlistRouter);
 app.get('/', (req, res) => res.send("API Working"));
 
 

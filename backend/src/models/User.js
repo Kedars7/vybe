@@ -40,6 +40,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["rock", "pop", "jazz", "classical", "hip-hop", "electronic", "country", "reggae", "blues", "metal"],
       default: "",
+    }],
+    likedSongs: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "song",
+      default: [],
     }]
   },
   { timestamps: true },

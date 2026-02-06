@@ -25,6 +25,7 @@ const PlayerContextProvider = (props) => {
     const [isMuted, setIsMuted] = useState(false);
     const [userData, setUserData] = useState(null);
     const [usersNowPlaying, setUsersNowPlaying] = useState({});
+    const [likedSongs, setLikedSongs] = useState([]);
     const [time, setTime] = useState({
         currentTime: {
             second: 0,
@@ -243,10 +244,56 @@ const PlayerContextProvider = (props) => {
         }
     }
 
+    const getLikedSongs = async () => {
+        try {
+            const response = await axios.get(`${url}/api/playlist/liked/songs`, { withCredentials: true });
+            setLikedSongs(response.data.likedSongs);
+        } catch (error) {
+            console.log('error getLikedSongs', error);
+        }
+    }
+
+    const likeSong = async (songId) => {
+        try {
+            const response = await axios.post(`${url}/api/playlist/like`, 
+                { songId }, 
+                { withCredentials: true }
+            );
+            if (response.data.success) {
+                setLikedSongs(response.data.likedSongs);
+                return { success: true };
+            }
+        } catch (error) {
+            console.log('error likeSong', error);
+            return { success: false, message: error.response?.data?.message || 'Failed to like song' };
+        }
+    }
+
+    const unlikeSong = async (songId) => {
+        try {
+            const response = await axios.post(`${url}/api/playlist/unlike`, 
+                { songId }, 
+                { withCredentials: true }
+            );
+            if (response.data.success) {
+                setLikedSongs(response.data.likedSongs);
+                return { success: true };
+            }
+        } catch (error) {
+            console.log('error unlikeSong', error);
+            return { success: false, message: error.response?.data?.message || 'Failed to unlike song' };
+        }
+    }
+
+    const isSongLiked = (songId) => {
+        return likedSongs.some(song => song._id === songId);
+    }
+
     useEffect(() => {
         getUserData();
         getAlbumsData();
         getSongsData();
+        getLikedSongs();
     }, [])
 
     const contextValue = {
@@ -266,7 +313,12 @@ const PlayerContextProvider = (props) => {
         volume, handleVolumeChange,
         isMuted, toggleMute,
         userData, setUserData,
-        usersNowPlaying
+        usersNowPlaying,
+        likedSongs,
+        likeSong,
+        unlikeSong,
+        isSongLiked,
+        getLikedSongs
     }
 
     return (
