@@ -1,0 +1,41 @@
+[
+  { "name": "Pop", "category": "mainstream" },
+  { "name": "Bollywood", "category": "regional" },
+  { "name": "Hip-Hop", "category": "mainstream" },
+  { "name": "Rap", "category": "mainstream" },
+  { "name": "Rock", "category": "mainstream" },
+  { "name": "Indie", "category": "mainstream" },
+  { "name": "Electronic", "category": "energy" },
+  { "name": "EDM", "category": "energy" },
+  { "name": "Dance", "category": "energy" },
+  { "name": "R&B", "category": "mood" },
+
+  { "name": "Lo-fi", "category": "mood" },
+  { "name": "Acoustic", "category": "mood" },
+  { "name": "Ambient", "category": "mood" },
+  { "name": "Instrumental", "category": "mood" },
+  { "name": "Chill Beats", "category": "mood" },
+  { "name": "Jazz", "category": "mood" },
+  { "name": "Blues", "category": "mood" },
+
+  { "name": "Trap", "category": "energy" },
+  { "name": "House", "category": "energy" },
+  { "name": "Techno", "category": "energy" },
+  { "name": "Dubstep", "category": "energy" },
+  { "name": "Hardstyle", "category": "energy" },
+
+  { "name": "Marathi", "category": "regional" },
+  { "name": "Punjabi", "category": "regional" },
+  { "name": "Tamil", "category": "regional" },
+  { "name": "Telugu", "category": "regional" },
+  { "name": "Malayalam", "category": "regional" },
+  { "name": "Indian Classical", "category": "regional" },
+  { "name": "Ghazal", "category": "regional" },
+  { "name": "Devotional", "category": "regional" },
+
+  { "name": "Alternative Rock", "category": "mainstream" },
+  { "name": "Folk", "category": "mood" },
+  { "name": "Country", "category": "mood" },
+  { "name": "Synthwave", "category": "energy" },
+  { "name": "Experimental", "category": "mainstream" }
+]
